@@ -146,7 +146,8 @@ class Pipeline():
                 "predicted_values":y_hat,
                 "actual_values": y_test
             }})
-            sns.scatterplot(y_test,y_hat)
+            ax = sns.scatterplot(y_test,y_hat)
+            ax.set(ylim=(min([min(y_test), min(y_hat)]), max([max(y_test), max(y_hat)])),xlim= (min([min(y_test), min(y_hat)]),max([max(y_test), max(y_hat)])))
             plt.show()
         return df_results
 
