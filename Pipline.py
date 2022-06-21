@@ -78,6 +78,7 @@ class Pipeline():
         Returns:
             float: Mean squared error
             float: Mean absolut error
+            
         """
         y_hat = trained_model.predict(x_test)
         mse = mean_squared_error(y_test, y_hat)
@@ -104,19 +105,19 @@ class Pipeline():
 
 
     def run_experiments_float(self, experiments, X, Y, Scaler,scoring, random_state:int =42, shuffle:bool = True, test_size: float = 0.3):
-        """_summary_
+        """This function runs the predefined experiments on a dataset for Regression problems
 
         Args:
-            experiments (_type_): _description_
-            X (_type_): _description_
-            Y (_type_): _description_
-            Scaler (_type_): _description_
-            scoring (_type_): _description_
-            random_state (int, optional): _description_. Defaults to 42.
-            shuffle (bool, optional): _description_. Defaults to True.
+            experiments (List with nested dicts): Here the experiments are defined 
+            X (_type_): The dataset that contains the features
+            Y (_type_): The dataset that contains the dependent variable
+            Scaler (sklearn.scaler): The scaler that is applied to the data 
+            scoring (sklearn.metrics): The metric that should be used to optimize the model
+            random_state (int, optional): The randomstate used in the experimentation. Defaults to 42.
+            shuffle (bool, optional): Defines if the data should be shuffeled before it is being split up. Defaults to True.
 
         Returns:
-            _type_: _description_
+            list that contains dicts: Returns the results put into a dicitionarry format
         """
         X_train, X_test, y_train, y_test = train_test_split(X,Y,random_state = random_state, shuffle=shuffle, test_size=test_size)
         X_train_scaled = Scaler.fit_transform(X_train)
@@ -153,19 +154,19 @@ class Pipeline():
 
 
     def run_experiments_classification(self, experiments, X, Y, Scaler,scoring, random_state:int =42, shuffle:bool = True, test_size: float = 0.3):
-        """_summary_
+        """This function runs the predefined experiments on a dataset for Classification problems
 
         Args:
-            experiments (_type_): _description_
-            X (_type_): _description_
-            Y (_type_): _description_
-            Scaler (_type_): _description_
-            scoring (_type_): _description_
-            random_state (int, optional): _description_. Defaults to 42.
-            shuffle (bool, optional): _description_. Defaults to True.
+            experiments (List with nested dicts): Here the experiments are defined 
+            X (_type_): The dataset that contains the features
+            Y (_type_): The dataset that contains the dependent variable
+            Scaler (sklearn.scaler): The scaler that is applied to the data 
+            scoring (sklearn.metrics): The metric that should be used to optimize the model
+            random_state (int, optional): The randomstate used in the experimentation. Defaults to 42.
+            shuffle (bool, optional): Defines if the data should be shuffeled before it is being split up. Defaults to True.
 
         Returns:
-            _type_: _description_
+            list that contains dicts: Returns the results put into a dicitionarry format
         """
         X_train, X_test, y_train, y_test = train_test_split(X,Y,random_state = random_state, shuffle=shuffle, test_size=test_size)
         X_train_scaled = Scaler.fit_transform(X_train)
@@ -181,7 +182,7 @@ class Pipeline():
             print("-----------------")
             trained_model = self.hyperparameter_tuning(model=experiment["model"],x_train=X_train_scaled, y_train=y_train, hyperparameters= experiment["parameters"], scoring=scoring, random_state=random_state)
             asc, basc, ras, f1 = Pipeline.model_evaluation_classification(trained_model, x_test=X_test_scaled, y_test=y_test)
-            df_results = []
+            df_results = "test"
             end_time = time.time() - start_time
             #print(f'Optimized for {scoring} the {experiment['name']} achieved the following scores:')
             print(f'Accuracy: {asc}')
@@ -199,4 +200,4 @@ class Pipeline():
                 "f1_score":f1
             }})
         return df_results
-
+ 
