@@ -2,6 +2,8 @@ import torch
 from torch import nn
 
 
+# TODO Build models with other activation function 
+
 #From class adapted
 class NN_128_3(nn.Module):
 
