@@ -15,7 +15,7 @@ class NN_128_3(nn.Module):
         self.hidden_3 = nn.Linear(64, 32)
         self.output = nn.Linear(32,1)
         #from https://wandb.ai/authors/ayusht/reports/Implementing-Dropout-in-PyTorch-With-Example--VmlldzoxNTgwOTE
-        self.dropout = nn.Dropout(0.25)
+        self.dropout = nn.Dropout(0.05)
         
  
     def forward(self, x):
@@ -64,7 +64,7 @@ class NN_512_5(nn.Module):
         self.hidden_4 = nn.Linear(128, 64)
         self.hidden_5 = nn.Linear(64, 32)
         self.output = nn.Linear(32,1)
-        self.dropout = nn.Dropout(0.25)
+        self.dropout = nn.Dropout(0.05)
  
     def forward(self, x):
 
