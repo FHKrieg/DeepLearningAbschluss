@@ -141,6 +141,7 @@ class Pipeline():
             print(f'Time: {int(round(end_time, 1))} seconds ({int(round(end_time/60, 1))} minutes)')
             df_results.append({"name": experiment["name"],
             "trained_model": trained_model,
+            "scaler": Scaler,
             "best_results": {
                 "MSE": mse, 
                 "MAE":mae,
